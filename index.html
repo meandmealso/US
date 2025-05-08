@@ -32,6 +32,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#welcome">Our Beginning</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="#gallery">Our Memories</a></li>
                     <li class="nav-item"><a class="nav-link" href="#songs">Our Soundtrack</a></li>
                     <!-- Add more links if you add more sections -->
@@ -66,6 +67,60 @@
             </div>
         </div>
     </section>
+
+        <!-- ... Welcome Section ... -->
+
+    <!-- About Us & Birthdays Section -->
+    <section id="about-us" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">A Little More About Us <i class="fas fa-user-friends" style="color: var(--primary-color);"></i></h2>
+            <div class="row justify-content-center">
+                <!-- Your Card -->
+                <div class="col-lg-5 col-md-6 mb-4" data-aos="fade-right" data-aos-delay="100">
+                    <div class="card h-100 shadow-sm about-card">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0">About Muath</h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><strong>Birthday:</strong> May 25, 2003</p>
+                            <p class="card-text"><strong>Current Age:</strong> <span id="your-age">Calculating...</span></p>
+                            <div class="mb-3">
+                                <h5>Next Birthday In:</h5>
+                                <div id="your-birthday-countdown" class="timer-display birthday-timer">
+                                    <!-- JS will populate this -->
+                                </div>
+                            </div>
+                            <hr>
+                            <p class="card-text"><strong>Fun Fact:</strong> I love Karak from Tea Time, and I love Shawarmer! ☕🌯</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Her Card -->
+                <div class="col-lg-5 col-md-6 mb-4" data-aos="fade-left" data-aos-delay="200">
+                    <div class="card h-100 shadow-sm about-card">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0">About Rital</h4> <!-- Assuming "Rital" is her name from your deploy URL -->
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><strong>Birthday:</strong> November 14, 2002</p>
+                            <p class="card-text"><strong>Current Age:</strong> <span id="her-age">Calculating...</span></p>
+                            <div class="mb-3">
+                                <h5>Next Birthday In:</h5>
+                                <div id="her-birthday-countdown" class="timer-display birthday-timer">
+                                    <!-- JS will populate this -->
+                                </div>
+                            </div>
+                            <hr>
+                            <p class="card-text"><strong>Fun Fact:</strong> hates ططلي and jelly, and loves mushrooms! 🍄</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ... Photo Gallery Section ... -->
 
     <!-- Photo Gallery Section -->
     <section id="gallery" class="py-5">

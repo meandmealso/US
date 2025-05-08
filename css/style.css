@@ -238,3 +238,40 @@ footer .fa-heart {
     opacity: 0;
     transition-property: transform, opacity;
 }
+
+#about-us {
+    background-color: var(--light-bg); /* Or choose another color */
+}
+
+.about-card {
+    border: none;
+    border-radius: 10px;
+}
+
+.about-card .card-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    /* Using your primary color, ensure good contrast with white text */
+    background-color: var(--primary-color) !important;
+}
+
+.about-card .card-header h4 {
+    color: white; /* Ensure heading text is white if background is dark */
+    font-family: 'Lobster', cursive; /* Or your chosen heading font */
+}
+
+.about-card .card-body strong {
+    color: var(--primary-color);
+}
+
+.birthday-timer div {
+    background-color: rgba(0, 0, 0, 0.05); /* Lighter background for these timers */
+    padding: 8px 12px;
+    font-size: 0.9em; /* Slightly smaller than main timers */
+}
+.birthday-timer div span.time-value {
+    font-size: 1.5rem;
+}
+.birthday-timer div span.time-label {
+    font-size: 0.6rem;
+}

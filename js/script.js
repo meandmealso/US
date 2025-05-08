@@ -219,3 +219,120 @@ function playPreview(previewUrl, buttonElement) {
         }
     };
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Configuration ---
+    const firstMessageDate = '2025-04-18T03:35:00+03:00';
+    const officialDate = '2025-05-08T15:31:00+03:00';
+
+    // --- NEW: Birth Date Configurations ---
+    const yourBirthDateString = '2003-05-25'; // YYYY-MM-DD
+    const herBirthDateString = '2002-11-14';   // YYYY-MM-DD
+
+    // ... (rest of your existing initializations) ...
+
+    // --- Initialize Age and Birthday Countdowns ---
+    if (document.getElementById('your-age')) {
+        displayAgeAndBirthday('your-age', 'your-birthday-countdown', yourBirthDateString);
+    }
+    if (document.getElementById('her-age')) {
+        displayAgeAndBirthday('her-age', 'her-birthday-countdown', herBirthDateString);
+    }
+
+});
+
+
+function calculateAge(birthDateString) {
+    const birthDate = new Date(birthDateString);
+    const today = new Date();
+
+    let years = today.getFullYear() - birthDate.getFullYear();
+    let months = today.getMonth() - birthDate.getMonth();
+    let days = today.getDate() - birthDate.getDate();
+
+    if (days < 0) {
+        months--;
+        // Get days in the previous month
+        days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    return { years, months, days };
+}
+
+function getNextBirthday(birthDateString) {
+    const birthDate = new Date(birthDateString);
+    const today = new Date();
+    let nextBirthdayYear = today.getFullYear();
+
+    // Set month and day from birthDate, year from current or next year
+    let nextBirthday = new Date(nextBirthdayYear, birthDate.getMonth(), birthDate.getDate());
+
+    if (nextBirthday < today) { // If birthday this year has passed
+        nextBirthday.setFullYear(nextBirthdayYear + 1);
+    }
+    return nextBirthday;
+}
+
+function displayAgeAndBirthday(ageElementId, countdownElementId, birthDateString) {
+    const ageElement = document.getElementById(ageElementId);
+    const countdownElement = document.getElementById(countdownElementId);
+
+    if (!ageElement || !countdownElement) {
+        console.warn(`Elements for age/birthday not found for: ${ageElementId}, ${countdownElementId}`);
+        return;
+    }
+
+    // Display Age
+    const age = calculateAge(birthDateString);
+    ageElement.textContent = `${age.years} years, ${age.months} months, and ${age.days} days`;
+
+    // Birthday Countdown
+    const nextBirthdayDate = getNextBirthday(birthDateString);
+
+    const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = nextBirthdayDate.getTime() - now;
+
+        if (distance < 0) { // Should not happen if logic is correct, but good for safety
+            countdownElement.innerHTML = "Happy Birthday!"; // Or update to next year
+            // Potentially re-calculate next birthday and age here if it just passed
+            const newAge = calculateAge(birthDateString);
+            ageElement.textContent = `${newAge.years} years, ${newAge.months} months, and ${newAge.days} days`;
+            // And restart countdown for next year - complex to do in interval, better to refresh page or trigger a function
+            // For simplicity, we'll assume the page gets refreshed or it's handled by the getNextBirthday on load
+            // clearInterval(interval);
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML = `
+            <div><span class="time-value">${days}</span><span class="time-label">Days</span></div>
+            <div><span class="time-value">${hours}</span><span class="time-label">Hours</span></div>
+            <div><span class="time-value">${minutes}</span><span class="time-label">Minutes</span></div>
+            <div><span class="time-value">${seconds}</span><span class="time-label">Seconds</span></div>
+        `;
+
+        // If birthday just passed (distance becomes negative during an interval)
+        // This is a quick check to update age right after midnight on birthday
+        if (new Date().getDate() === new Date(birthDateString).getDate() &&
+            new Date().getMonth() === new Date(birthDateString).getMonth() &&
+            distance < (1000 * 60 * 60 * 24) && distance > - (1000 * 60 * 60 * 24) ) { // within the birthday
+            const currentAge = calculateAge(birthDateString);
+            if (ageElement.textContent !== `${currentAge.years} years, ${currentAge.months} months, and ${currentAge.days} days`) {
+                ageElement.textContent = `${currentAge.years} years, ${currentAge.months} months, and ${currentAge.days} days`;
+            }
+        }
+
+
+    }, 1000);
+}
