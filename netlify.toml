@@ -1,0 +1,10 @@
+[build]
+  functions = "netlify/functions" # Specifies the directory for serverless functions
+  publish = "."                   # Your site's root directory (where index.html is)
+
+# Optional: If you want to set environment variables directly here for local testing
+# (Not recommended for secrets in version control; use Netlify UI for production)
+# [context.dev.environment]
+#   SPOTIFY_PLAYLIST_ID = "YOUR_PLAYLIST_ID_HERE"
+#   SPOTIFY_CLIENT_ID = "YOUR_SPOTIFY_CLIENT_ID"
+#   SPOTIFY_CLIENT_SECRET = "YOUR_SPOTIFY_CLIENT_SECRET"

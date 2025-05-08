@@ -1,0 +1,240 @@
+/* css/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+    --primary-color: #E91E63; /* Romantic Pink */
+    --secondary-color: #FFC107; /* Warm Amber/Gold */
+    --text-color: #333;
+    --light-bg: #FFF0F5; /* LavenderBlush */
+    --dark-bg: #4a148c; /* Deep purple for contrast or footer */
+    --navbar-height: 70px; /* Adjust if your navbar height changes */
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+    padding-top: var(--navbar-height); /* For fixed navbar */
+    line-height: 1.6;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--navbar-height); /* Offset for fixed navbar */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lobster', cursive;
+    color: var(--primary-color);
+}
+
+.navbar-brand {
+    font-family: 'Lobster', cursive;
+    font-size: 1.8rem;
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.9) !important; /* Slightly transparent white */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.nav-link {
+    font-weight: 600;
+}
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+
+/* Welcome Section */
+#welcome {
+    /* Consider a romantic background image here */
+    /* background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../images/your-background.jpg'); */
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); /* Pink gradient */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    min-height: calc(100vh - var(--navbar-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#welcome h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: white; /* Override default h1 color for this section */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.timer-widget {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 25px;
+    border-radius: 15px;
+    margin: 15px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.timer-widget h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #f8f9fa; /* Light color for heading on dark widget */
+}
+.timer-widget p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    color: #e9ecef;
+}
+
+.timer-display {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between timer units */
+}
+
+.timer-display div {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 10px 15px;
+    border-radius: 8px;
+    min-width: 70px; /* Ensure consistent width */
+    text-align: center;
+}
+
+.timer-display div span.time-value {
+    display: block;
+    font-size: 2rem; /* Larger numbers */
+    font-weight: bold;
+    line-height: 1;
+}
+
+.timer-display div span.time-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+
+/* Gallery Section */
+#gallery {
+    background-color: var(--light-bg);
+    padding: 60px 0;
+}
+#gallery h2, #songs h2 {
+    margin-bottom: 40px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px; /* Or use aspect-ratio */
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+.modal-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%); /* Make close button white */
+}
+#modalImage {
+    max-height: 80vh;
+    border-radius: 5px;
+}
+
+/* Songs Section */
+#songs {
+    padding: 60px 0;
+    background-color: #ffffff; /* White background for song cards to pop */
+}
+
+.song-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden; /* Ensures image corners are rounded with card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%; /* For equal height cards in a row */
+    display: flex;
+    flex-direction: column;
+}
+
+.song-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.song-card .card-img-top {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Square album art */
+    object-fit: cover;
+}
+
+.song-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows button to stick to bottom */
+}
+
+.song-card .card-title {
+    font-size: 1.1rem;
+    font-family: 'Open Sans', sans-serif; /* More readable for song titles */
+    color: var(--text-color);
+    font-weight: 600;
+}
+.song-card .card-text {
+    font-size: 0.9rem;
+    color: #6c757d; /* Muted text for artist */
+}
+
+.song-card .btn-spotify {
+    background-color: #1DB954; /* Spotify Green */
+    border-color: #1DB954;
+    color: white;
+    font-weight: 600;
+    margin-top: auto; /* Pushes button to bottom */
+}
+.song-card .btn-spotify:hover {
+    background-color: #1aa34a;
+    border-color: #1aa34a;
+}
+.song-card .btn-preview {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+.song-card .btn-preview:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--dark-bg);
+    color: #f8f9fa; /* Light text on dark background */
+    padding: 20px 0;
+}
+footer p {
+    margin-bottom: 0;
+}
+footer .fa-heart {
+    color: var(--primary-color);
+}
+
+/* AOS Animation defaults */
+[data-aos] {
+    opacity: 0;
+    transition-property: transform, opacity;
+}
